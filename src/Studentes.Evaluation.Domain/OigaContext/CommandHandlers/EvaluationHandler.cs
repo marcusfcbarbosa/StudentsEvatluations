@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace Studentes.Evaluation.Domain.OigaContext
 {
-    public class EvaluationHandler : IRequestHandler<CreateEvaluationCommand, ICommandResult>
+    public class EvaluationHandler :
+        IRequestHandler<CreateEvaluationCommand, ICommandResult>,
+        IRequestHandler<DeleteEvaluationCommand, ICommandResult>
+
+        
     {
         private readonly IEvaluationRepository _evaluationRepository;
         private readonly ICourseStudentRepository _courseStudentRepository;
@@ -24,6 +28,14 @@ namespace Studentes.Evaluation.Domain.OigaContext
             await _evaluationRepository.CreateAsync(evaluation);
             await _evaluationRepository.SaveChangesAsync();
             return new CommandResult(true, "Evaluation successfully registered!", evaluation.Id);
+        }
+
+        public async Task<ICommandResult> Handle(DeleteEvaluationCommand request, CancellationToken cancellationToken)
+        {
+            var evaluation = _evaluationRepository.GetById(request.id);
+            _evaluationRepository.Delete(evaluation);
+            await _evaluationRepository.SaveChangesAsync();
+            return new CommandResult(true, "Evaluation successfully deleted!", evaluation.Id);
         }
     }
 }

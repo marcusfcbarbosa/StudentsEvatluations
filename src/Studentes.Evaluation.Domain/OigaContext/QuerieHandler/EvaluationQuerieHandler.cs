@@ -10,10 +10,8 @@ namespace Studentes.Evaluation.Domain.OigaContext.QuerieHandler
     public class EvaluationQuerieHandler :
         IRequestHandler<GetEvaluationQuerie, IQueryResult>,
         IRequestHandler<GetAllEvaluationQuerie, IQueryResult>
-        
     {
         private readonly IEvaluationRepository _evaluationRepository;
-
         public EvaluationQuerieHandler(IEvaluationRepository evaluationRepository)
         {
             _evaluationRepository = evaluationRepository;

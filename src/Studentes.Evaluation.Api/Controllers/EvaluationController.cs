@@ -5,7 +5,6 @@ using Studentes.Evaluation.Domain.OigaContext.Queries;
 using Studentes.Evaluation.Shared;
 using System;
 using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Studentes.Evaluation.Api.Controllers
 {
@@ -45,13 +44,13 @@ namespace Studentes.Evaluation.Api.Controllers
             return await mediator.Send(query);
         }
 
-        //[HttpDelete]
-        //public async Task<ICommandResult> Delete([FromServices] IMediator mediator, DeletaAnuncioCommand command)
-        //{
-        //    command.Validate();
-        //    if (command.Valid)
-        //        return await mediator.Send(command);
-        //    return new CommandResult(false, "Erros", command.Notifications);
-        //}
+        [HttpDelete]
+        public async Task<ICommandResult> Delete([FromServices] IMediator mediator, DeleteEvaluationCommand command)
+        {
+            command.Validate();
+            if (command.Valid)
+                return await mediator.Send(command);
+            return new CommandResult(false, "Errors", command.Notifications);
+        }
     }
 }
