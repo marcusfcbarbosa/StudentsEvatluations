@@ -7,8 +7,8 @@ namespace Studentes.Evaluation.Domain.OigaContext.Entities
     {
         protected Evaluation() { }
         public Evaluation(CourseStudent courseStudents, 
-                          int stars, string description
-                          )
+                          int stars, 
+                          string description)
         {
             this.courseStudent = courseStudents;
             this.stars = stars;
