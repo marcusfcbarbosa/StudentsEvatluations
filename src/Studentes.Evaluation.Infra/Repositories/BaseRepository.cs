@@ -64,6 +64,10 @@ namespace Studentes.Evaluation.Infra.Repositories
         {
             return _context.Set<TEntity>().FirstOrDefault(e => e.Id == id);
         }
+        public IEnumerable<TEntity> GetAll()
+        {
+            return _context.Set<TEntity>().ToList();
+        }
 
         public IEnumerable<TEntity> Filter()
         {
@@ -85,5 +89,7 @@ namespace Studentes.Evaluation.Infra.Repositories
         {
             await _context.SaveChangesAsync();
         }
+
+        
     }
 }

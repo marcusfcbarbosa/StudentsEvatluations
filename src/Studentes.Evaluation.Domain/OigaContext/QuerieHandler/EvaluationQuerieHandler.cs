@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace Studentes.Evaluation.Domain.OigaContext.QuerieHandler
 {
     public class EvaluationQuerieHandler :
-        IRequestHandler<GetEvaluationQuerie, IQueryResult>
+        IRequestHandler<GetEvaluationQuerie, IQueryResult>,
+        IRequestHandler<GetAllEvaluationQuerie, IQueryResult>
+        
     {
         private readonly IEvaluationRepository _evaluationRepository;
 
@@ -20,6 +22,11 @@ namespace Studentes.Evaluation.Domain.OigaContext.QuerieHandler
         public async Task<IQueryResult> Handle(GetEvaluationQuerie request, CancellationToken cancellationToken)
         {
             return await Task.FromResult(new QueryResult(true, "", _evaluationRepository.GetById(request.id)));
+        }
+
+        public async Task<IQueryResult> Handle(GetAllEvaluationQuerie request, CancellationToken cancellationToken)
+        {
+            return await Task.FromResult(new QueryResult(true, "", _evaluationRepository.GetAll()));
         }
     }
 }

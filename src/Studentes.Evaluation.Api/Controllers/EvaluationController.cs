@@ -37,12 +37,13 @@ namespace Studentes.Evaluation.Api.Controllers
             return new QueryResult(false, "Errors", query.Notifications);
         }
 
-        //[HttpGet]
-        //[Route("")]
-        //public async Task<IQueryResult> GetAll([FromServices] IMediator mediator, [FromQuery] BuscaTodosAnunciosQuery query)
-        //{
-        //    return await mediator.Send(query);
-        //}
+        [HttpGet]
+        [Route("all")]
+        public async Task<IQueryResult> GetAll([FromServices] IMediator mediator,
+            [FromQuery] GetAllEvaluationQuerie query)
+        {
+            return await mediator.Send(query);
+        }
 
         //[HttpDelete]
         //public async Task<ICommandResult> Delete([FromServices] IMediator mediator, DeletaAnuncioCommand command)

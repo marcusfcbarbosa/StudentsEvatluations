@@ -11,6 +11,7 @@ namespace Studentes.Evaluation.Shared.Interfaces
         void Delete(Guid id);
         void Edit(TEntity entity);
         TEntity GetById(Guid id);
+        IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Filter();
         IEnumerable<TEntity> Filter(Func<TEntity, bool> predicate);
         void SaveChanges();
