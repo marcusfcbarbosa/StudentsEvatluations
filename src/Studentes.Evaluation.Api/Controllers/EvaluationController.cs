@@ -26,10 +26,11 @@ namespace Studentes.Evaluation.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
-        public async Task<IQueryResult> Get([FromServices] IMediator mediator, Guid id)
+        [Route("")]
+        public async Task<IQueryResult> Get([FromServices] IMediator mediator, 
+                        [FromQuery]string id)
         {
-            var query = new GetEvaluationQuerie { id = id };
+            var query = new GetEvaluationQuerie { id = new Guid(id) };
             query.Validate();
             if (query.Valid)
                 return await mediator.Send(query);

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidator;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Studentes.Evaluation.Domain.OigaContext.Entities;
 using System.Linq;
@@ -34,8 +35,8 @@ namespace Studentes.Evaluation.Infra.SqlContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(Oiga_DBContext).Assembly);
-            //modelBuilder.Ignore<Notifiable>();
-            //modelBuilder.Ignore<Notification>();
+            modelBuilder.Ignore<Notifiable>();
+            modelBuilder.Ignore<Notification>();
             EntityMapping(modelBuilder);
             foreach (var property in modelBuilder.Model.GetEntityTypes().SelectMany(
                 e => e.GetProperties().Where(p => p.ClrType == typeof(string))))

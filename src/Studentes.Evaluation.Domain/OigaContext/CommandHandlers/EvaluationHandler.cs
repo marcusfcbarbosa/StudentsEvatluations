@@ -22,7 +22,8 @@ namespace Studentes.Evaluation.Domain.OigaContext
             var course_student = _courseStudentRepository.GetById(request.course_student_id);
             var evaluation = new Studentes.Evaluation.Domain.OigaContext.Entities.Evaluation(course_student, request.stars, request.description);
             await _evaluationRepository.CreateAsync(evaluation);
-            return new CommandResult(true, "Evaluation successfully registered!", evaluation);
+            await _evaluationRepository.SaveChangesAsync();
+            return new CommandResult(true, "Evaluation successfully registered!", evaluation.Id);
         }
     }
 }

@@ -9,12 +9,13 @@ namespace Studentes.Evaluation.Domain.OigaContext.Queries
 {
     public class GetEvaluationQuerie : Notifiable, IQuerie, IRequest<IQueryResult>
     {
+        
         public Guid id { get; set; }
         public void Validate()
         {
             AddNotifications(new ValidationContract()
                 .Requires()
-                .IsTrue(id == Guid.Empty, "id", "id  is required"));
+                .IsFalse(id == Guid.Empty, "id", "id  is required"));
         }
     }
 }

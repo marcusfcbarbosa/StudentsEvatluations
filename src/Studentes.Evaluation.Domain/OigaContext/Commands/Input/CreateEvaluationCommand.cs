@@ -18,7 +18,7 @@ namespace Studentes.Evaluation.Domain.OigaContext.Commands.Input
         {
             AddNotifications(new ValidationContract()
             .Requires()
-                .IsLowerThan(stars, 0, "stars", "stars is required"));
+                .IsLowerThan(0,stars, "stars", "stars is required"));
 
             AddNotifications(new ValidationContract()
                 .Requires()
@@ -27,7 +27,7 @@ namespace Studentes.Evaluation.Domain.OigaContext.Commands.Input
 
             AddNotifications(new ValidationContract()
                 .Requires()
-                .IsTrue(course_student_id == Guid.Empty, "course_student_id", "course_student_id  is required"));
+                .IsFalse(course_student_id == Guid.Empty, "course_student_id", "course_student_id  is required"));
 
         }
     }
