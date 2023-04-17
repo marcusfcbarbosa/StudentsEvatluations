@@ -15,13 +15,15 @@ namespace Studentes.Evaluation.Domain.OigaContext
     {
         private readonly IEvaluationRepository _evaluationRepository;
         private readonly ICourseStudentRepository _courseStudentRepository;
-        public EvaluationHandler(IEvaluationRepository evaluationRepository, ICourseStudentRepository courseStudentRepository)
+        public EvaluationHandler(IEvaluationRepository evaluationRepository,
+               ICourseStudentRepository courseStudentRepository)
         {
             _evaluationRepository = evaluationRepository;
             _courseStudentRepository = courseStudentRepository;
         }
 
-        public async Task<ICommandResult> Handle(CreateEvaluationCommand request, CancellationToken cancellationToken)
+        public async Task<ICommandResult> Handle(CreateEvaluationCommand request,
+            CancellationToken cancellationToken)
         {
             var course_student = _courseStudentRepository.GetById(request.course_student_id);
             var evaluation = new Studentes.Evaluation.Domain.OigaContext.Entities.Evaluation(course_student, request.stars, request.description);
